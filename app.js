@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const engine = require('ejs-mate');
+const catchAsync = require('./utils/catchAsync');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
 
