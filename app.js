@@ -33,6 +33,15 @@ app.use(methodOverride('_method'));
 const validateCampground = (req, res, next) => {
 
     const { error } = campgroundSchema.validate(req.body);
+    checkForError(error);
+}
+
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body)
+    checkForError(error);
+}
+
+function checkForError(error) {
     if(error) {
         const msg = error.details.map(el => el.messgae).join(',')
         throw new ExpressError(msg, 400)
@@ -83,7 +92,7 @@ app.delete('/campgrounds/:id', catchAsync(async(req, res) => {
     res.redirect('/campgrounds');
 }));
 
-app.post('/camgrounds/:id/reviews', catchAsync(async(req, res) => {
+app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async(req, res) => {
     const campground = await Campground.findById(req.params.id);
     const review = new Review(req.body.review);
     campground.reviews.push(review);
@@ -99,8 +108,8 @@ app.all('*', (req, res, next) => {
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = 'Something Went Wrong.'
-    res.status(statusCode).render('error', { err });
-});
+    res.status(statusCode).render('error', { err })
+})
 
 app.listen(3000, () => {
     console.log('Serving on Port 3000')
