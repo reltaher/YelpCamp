@@ -31,19 +31,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 const validateCampground = (req, res, next) => {
-
     const { error } = campgroundSchema.validate(req.body);
     checkForError(error);
 }
 
 const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body)
+    const { error } = reviewSchema.validate(req.body);
     checkForError(error);
 }
 
 function checkForError(error) {
     if(error) {
-        const msg = error.details.map(el => el.messgae).join(',')
+        const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)
     } else {
         next();
