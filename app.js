@@ -101,6 +101,8 @@ app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async(req, res) 
     res.redirect(`/campgrounds/${campground._id}`);
 }));
 
+
+
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
 });
