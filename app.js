@@ -32,16 +32,17 @@ app.use(methodOverride('_method'));
 
 const validateCampground = (req, res, next) => {
     const { error } = campgroundSchema.validate(req.body);
-    checkForError(error);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
 }
 
 const validateReview = (req, res, next) => {
     const { error } = reviewSchema.validate(req.body);
-    checkForError(error);
-}
-
-function checkForError(error) {
-    if(error) {
+    if (error) {
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)
     } else {
