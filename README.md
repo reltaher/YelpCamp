@@ -10,11 +10,10 @@ This web application has been deployed through Heroku. To view this application,
 
 This web application was built with Node.js and Express, as well as MongoDB for the NoSQL Database program.
 
-## Contributing
-
-
 ## Author
 
 Ramzy El-Taher
 
 ## License
+
+![Link to License](License.md)
