@@ -16,4 +16,4 @@ Ramzy El-Taher
 
 ## License
 
-![Link to License](License.md)
+![Link to License](LICENSE)
