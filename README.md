@@ -1,5 +1,6 @@
 # YelpCamp
 
+YelpCamp is a web application that acts as a small-scaled Yelp clone designed specifically for Campgrounds. Users can view campgrounds, leave a review for campgrounds, and create a campground if they own one. Authors of campgrounds can edit, update, and delete their campgrounds.
 
 ## Demonstration
 
